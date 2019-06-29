@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html   xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	    layout:decorator="LayoutPadrao">
+	    
+<head>
+<title>Exibir estoque</title>
+</head>
+
+<section layout:fragment="conteudo">
+
+	<div layout:include="MensagemGeral"></div>
+
+
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<div class="clearfix">
+				<h1 class="panel-title sg-title-panel">
+					<b th:text="${estoque.descricao}"></b>
+				</h1>
+			</div>
+		</div>
+
+		<div class="panel-body">
+			<div id="row0" class="row">
+						<div class="col-md-4">
+							<div id="rowMapa" class="row">
+								<div id="mapa"></div>
+							</div>
+						</div>						
+						<div class="col-md-8">
+							<ul class="list-group">
+								<li class="list-group-item" th:text="|Código: ${estoque.codigo}|"></li>
+								<li class="list-group-item" th:text="|Descrição: ${estoque.descricao}"></li>
+								<li class="list-group-item" th:text="${estoque.endereco}"></li>
+								<li class="list-group-item" id="latitude" th:text="${estoque.latitude}" th:attr="data-latitude=${estoque.latitude}"></li>
+								<li class="list-group-item" id="longitude" th:text="${estoque.longitude}" th:attr="data-longitude=${estoque.longitude}"></li>
+								<li class="list-group-item" th:text="|${estoque.elevacao} metros|"></li>
+								<li class="list-group-item">Situação: <span class="glyphicon" th:classappend="${estoque.ativo} == true?'glyphicon-ok-circle':'glyphicon-remove-circle'"></span></li>
+							</ul>
+							<div id="rowButton" class="row">								
+								<a class="btn btn-default" th:href="@{/estoques}">Cancelar</a>
+							</div>
+						</div>
+					</div>
+			<fieldset>
+				<legend>Equipamentos</legend>
+
+				<div class="table-responsive">
+				<table id="dataTable" class="table table-condensed table-hover table-bordered">
+				<thead>
+					<tr>
+						<th class="text-center col-md-1 active">#</th>
+						<th class="col-md-2 active">Nome</th>
+						<th class="text-center col-md-2 active">MAC</th>
+						<th class="text-center col-md-2 active">Tipo</th>
+						<th class="text-center col-md-2 active">Situação</th>
+						<th class="tex-right col-md-2 active">Manutenção</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="equipamento : ${listaEquipamentos}">
+						<td class="text-center" th:text="${equipamento.codigo}" th:classappend="${equipamento.ativo} == true?'info':'danger'"></td>
+						<td th:text="${equipamento.nome}" th:classappend="${equipamento.ativo} == true?'info':'danger'"></td>
+						<td class="text-center" th:text="${equipamento.mac}" th:classappend="${equipamento.ativo} == true?'info':'danger'"></td>
+						<td class="text-center" th:text="${equipamento.tipo.descricao}" th:classappend="${equipamento.ativo} == true?'info':'danger'"></td>
+						<td class="text-center" th:classappend="${equipamento.ativo} == true?'info':'danger'">
+							<span class="glyphicon" th:classappend="${equipamento.ativo} == true? 'glyphicon-ok-circle' : glyphicon-remove-circle"></span>
+						</td>
+						<td class="text-center" th:classappend="${equipamento.ativo} == true?'info':'danger'">
+							<a class="btn btn-xs btn-default" th:if="${equipamento.ativo} == true" th:href="@{/{codigoEstoque}/equipamentos/{codigoEquipamento}/enviar(codigoEstoque = ${estoque.codigo}, codigoEquipamento = ${equipamento.codigo})}">Enviar</a>
+							<a class="btn btn-xs btn-default" th:if="${equipamento.ativo} == false" th:href="@{/{codigoEstoque}/equipamentos/{codigoEquipamento}/receber(codigoEstoque = ${estoque.codigo}, codigoEquipamento = ${equipamento.codigo})}">Receber</a>
+						</td>			
+					</tr>
+				</tbody>
+			</table>
+			</div>
+			</fieldset>
+
+			<fieldset>
+				<legend>Baterias</legend>
+
+				<div class="table-responsive">
+				<table id="dataTable" class="table table-condensed table-hover table-bordered">
+					<thead>
+						<tr>
+							<th class="text-center col-md-1 active">#</th>
+							<th class="col-md-2 active">Nome</th>
+							<th class="text-center col-md-2 active">Nº série</th>
+							<th class="text-center col-md-2 active">Tipo</th>
+							<th class="text-center col-md-1 active">Voltagem</th>
+							<th class="text-center col-md-1 active">Ah</th>
+							<th class="text-center col-md-1 active">Situação</th>
+							<th class="tex-right col-md-2 active">Manutenção</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="bateria : ${listaBaterias}">
+							<td class="text-center" th:text="${bateria.codigo}" th:classappend="${bateria.ativo} == true?'info':'danger'"></td>
+							<td th:text="${bateria.nome}" th:classappend="${bateria.ativo} == true?'info':'danger'"></td>
+							<td class="text-center" th:text="${bateria.serial}" th:classappend="${bateria.ativo} == true?'info':'danger'"></td>
+							<td class="text-center" th:text="${bateria.tipo.descricao}" th:classappend="${bateria.ativo} == true?'info':'danger'"></td>
+							<td class="text-center" th:text="${bateria.voltagem}" th:classappend="${bateria.ativo} == true?'info':'danger'"></td>
+							<td class="text-center" th:text="|${bateria.corrente} Ah|" th:classappend="${bateria.ativo} == true?'info':'danger'"></td>
+							<td class="text-center" th:classappend="${bateria.ativo} == true?'info':'danger'">
+								<span class="glyphicon" th:classappend="${bateria.ativo} == true? 'glyphicon-ok-circle' : glyphicon-remove-circle"></span>
+							</td>
+							<td class="text-center" th:classappend="${bateria.ativo} == true?'info':'danger'">
+								<a class="btn btn-xs btn-default" th:if="${bateria.ativo} == true" th:href="@{/{codigoEstoque}/baterias/{codigoBateria}/enviar(codigoEstoque = ${estoque.codigo}, codigoBateria = ${bateria.codigo})}">Enviar</a>
+								<a class="btn btn-xs btn-default" th:if="${bateria.ativo} == false" th:href="@{/{codigoEstoque}/baterias/{codigoBateria}/receber(codigoEstoque = ${estoque.codigo}, codigoBateria = ${bateria.codigo})}">Receber</a>
+							</td>		
+						</tr>
+					</tbody>
+				</table>
+				</div>
+			</fieldset>
+		</div>		
+	</div>
+</section>
+
+</html>

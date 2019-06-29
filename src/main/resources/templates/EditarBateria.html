@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html   xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	    layout:decorator="LayoutPadrao">
+	    
+<head>
+<title>Editar bateria</title>
+</head>
+
+<section layout:fragment="conteudo">
+	<!-- 	Código revisado, finalizado. -->
+
+	<div layout:include="MensagemGeral"></div>
+
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<div class="clearfix">
+				<h1 class="panel-title sg-title-panel">
+					<b>Editar bateria</b>
+				</h1>				
+			</div>
+		</div>
+
+		<div class="panel-body">
+		
+			<div class="table-responsive">
+				<table id="dataTable" class="table table-condensed table-hover table-bordered">
+				<thead>
+					<tr>
+						<th class="text-center col-md-1 active">#</th>
+						<th class="active">Modelo</th>
+						<th class="text-center col-md-2 active">Nº série</th>
+						<th class="text-center col-md-2 active">Status</th>
+						<th class="text-center col-md-2 active">Ah</th>
+						<th class="col-md-2 active"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="bateria : ${baterias}">
+						<td class="text-center" th:text="${bateria.codigo}" th:classappend="${bateria.ativo} == true?'info':'danger'"></td>
+						<td th:text="${bateria.nome}" th:classappend="${bateria.ativo} == true?'info':'danger'"></td>
+						<td class="text-center" th:text="${bateria.serial}" th:classappend="${bateria.ativo} == true?'info':'danger'"></td>
+						<td class="text-center" th:text="${bateria.status.descricao}" th:classappend="${bateria.ativo} == true?'info':'danger'"></td>						
+						<td class="text-center" th:text="|${bateria.corrente} Ah|" th:classappend="${bateria.ativo} == true?'info':'danger'"></td>
+						<td class="text-center" th:classappend="${bateria.ativo} == true?'info':'danger'">							
+							<a class="btn btn-link btn-xs" th:href="@{/editar/baterias/{codigo}(codigo=${bateria.codigo})}"	title="Editar" rel="tooltip" data-placement="top">
+								 <span class="glyphicon glyphicon-pencil" title="Editar"></span>
+							</a> 
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		   </div>
+		</div>
+	</div>
+</section>
+
+</html>

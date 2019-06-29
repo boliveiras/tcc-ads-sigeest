@@ -1,0 +1,125 @@
+.navbar-brand {
+	padding-top: 7px;
+}
+
+.panel-primary {
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+.nav-pills {
+	margin-right: 10px;
+	margin-left: 10px;
+	margin-bottom: 10px;
+}
+
+.alert {
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+.sg-link-panel {
+	float: right;
+	color: white;
+}
+
+.sg-title-panel {
+	float: left;
+}
+
+#mapa{	
+	margin: 3px auto;
+	border: 4px dashed #c0c0c0;
+	width: 250px;
+	height:250px;
+}
+
+#imagem{	
+	margin: 3px auto;
+	border: 4px dashed #c0c0c0;
+	width: 200px;
+	height:250px;
+}
+
+#sideLeft{
+	float: left;
+}
+
+#sideRight{
+	align: right;
+}
+
+#row0{
+	
+}
+
+#row1{
+	border: 2px dashed #c0c0c0;
+	margin: 5px auto;
+	padding-top: 10px;
+}
+
+#row2{
+	border: 2px dashed #c0c0c0;
+	margin: 5px auto;
+	padding-top: 10px;
+}
+
+#row3{
+	border: 2px dashed #c0c0c0;
+	margin: 5px auto;
+	padding-top: 10px;
+}
+
+#row4{
+	border: 2px dashed #c0c0c0;
+	margin: 5px auto;
+	padding-top: 10px;
+}
+
+#row5{
+	border: 2px dashed #c0c0c0;
+	margin: 5px auto;
+	padding-top: 10px;
+}
+
+#row6{
+	border: 2px dashed #c0c0c0;
+	margin: 5px auto;
+	padding-top: 10px;
+}
+
+#rowButton{
+	margin-left: 2px;
+	padding-top: 20px;
+	padding-bottom: 20px;	
+}
+
+#rowImagem{
+}
+
+.menuop{
+	margin-right: 10px;
+	margin-left: 10px;	
+}
+
+.buttonAdc{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	float: right;	
+}
+
+.menu-navegacao{
+	margin-right: 20px;
+	margin-left: 2px;	
+}
+
+.error-panel{
+	color: #777;
+	text-align: center;
+}
+
+.error-panel-title{
+	text-align: center;
+	font-size: 32px;	
+}

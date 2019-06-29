@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html   xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<div class="row menu-navegacao">
+	<ul class="nav nav-pills nav-justified">
+		<li class="menuop" role="presentation">
+			<a class="button" role="button" th:href="@{/index}">Início</a>
+		</li>
+		<li class="dropdown menuop" role="presentation" sec:authorize="hasRole('ROLE_PESQUISAR')">
+			<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+				Pesquisar <span class="caret"></span>
+			</a>
+			<ul class="dropdown-menu">
+				<li class="menuop" role="presentation"><a th:href="@{/estruturas}">Estrutura</a></li>
+				<li class="menuop" role="presentation"><a th:href="@{/fabricantes}">Fabricante</a></li>
+				<li class="menuop" role="presentation"><a th:href="@{/equipamentos}">Equipamento</a></li>
+				<li class="menuop" role="presentation"><a th:href="@{/baterias}">Bateria</a></li>
+				<li class="menuop" role="presentation"><a th:href="@{/usuarios}">Usuário</a></li>
+				<li class="menuop" role="presentation"><a th:href="@{/estoques}">Estoque</a></li>
+         	</ul>
+		</li>
+		
+		<li class="dropdown menuop" role="presentation" sec:authorize="hasRole('ROLE_CADASTRAR')">
+			<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+				Cadastrar <span class="caret"></span>
+			</a>
+			<ul class="dropdown-menu">
+				<li class="menuop" role="presentation"><a th:href="@{/estrutura/novo}">Estrutura</a></li>
+				<li class="menuop" role="presentation"><a th:href="@{/fabricante/novo}">Fabricante</a></li>
+				<li class="menuop" role="presentation"><a th:href="@{/equipamento/novo}">Equipamento</a></li>
+				<li class="menuop" role="presentation"><a th:href="@{/bateria/novo}">Bateria</a></li>
+				<li class="menuop" role="presentation"><a th:href="@{/usuario/novo}">Usuário</a></li>
+				<li class="menuop" role="presentation"><a th:href="@{/estoque/novo}">Estoque</a></li>
+         	</ul>
+		</li>
+		
+		<li class="dropdown menuop" role="presentation" sec:authorize="hasRole('ROLE_EDITAR')">
+			<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+				Editar <span class="caret"></span>
+			</a>
+			<ul class="dropdown-menu">
+				<li class="menuop" role="presentation"><a th:href="@{/editar/estruturas/selecionar}">Estrutura</a></li>
+				<li class="menuop" role="presentation"><a th:href="@{/editar/fabricantes/selecionar}">Fabricante</a></li>
+				<li class="menuop" role="presentation"><a th:href="@{/editar/equipamentos/selecionar}">Equipamento</a></li>
+				<li class="menuop" role="presentation"><a th:href="@{/editar/baterias/selecionar}">Bateria</a></li>
+				<li class="menuop" role="presentation"><a th:href="@{/editar/usuarios/selecionar}">Usuário</a></li>
+				<li class="menuop" role="presentation"><a th:href="@{/editar/estoques/selecionar}">Estoque</a></li>
+         	</ul>
+		</li>
+		
+		<li class="dropdown menuop" role="presentation" sec:authorize="hasRole('ROLE_EXCLUIR')">
+			<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+				Excluir <span class="caret"></span>
+			</a>
+			<ul class="dropdown-menu">
+				<li class="menuop" role="presentation"><a th:href="@{/excluir/estruturas/selecionar}">Estrutura</a></li>
+				<li class="menuop" role="presentation"><a th:href="@{/excluir/fabricantes/selecionar}">Fabricante</a></li>
+				<li class="menuop" role="presentation"><a th:href="@{/excluir/equipamentos/selecionar}">Equipamento</a></li>
+				<li class="menuop" role="presentation"><a th:href="@{/excluir/baterias/selecionar}">Bateria</a></li>
+				<li class="menuop" role="presentation"><a th:href="@{/excluir/usuarios/selecionar}">Usuário</a></li>
+				<li class="menuop" role="presentation"><a th:href="@{/excluir/estoques/selecionar}">Estoque</a></li>
+         	</ul>
+		</li>		
+	</ul>
+</div>
+</html>

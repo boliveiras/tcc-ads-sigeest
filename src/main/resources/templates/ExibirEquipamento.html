@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html   xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	    layout:decorator="LayoutPadrao">
+	    
+<head>
+<title>Exibir equipamento</title>
+</head>
+
+<section layout:fragment="conteudo">
+
+	<div class="form-horizontal">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<div class="clearfix">
+					<h1 class="panel-title sg-title-panel">Equipamento</h1>
+				</div>
+			</div>
+
+			<div class="panel-body">
+
+				<div class="container-fluid">
+					<div id="row0" class="row">
+						<div class="col-md-12">
+							<ul class="list-group">
+								<li class="list-group-item" th:text="| Código: ${equipamento.codigo}|"></li>
+								<li class="list-group-item" th:text="| Nome: ${equipamento.nome}|"></li>
+								<li class="list-group-item" th:text="${equipamento.mac}"></li>
+								<li class="list-group-item" th:text="${equipamento.tipo.descricao}"></li>								
+								<li class="list-group-item"	th:text="|${equipamento.voltagem} volts|"></li>
+								<li class="list-group-item"	th:text="|${equipamento.corrente} Ah|"></li>
+								<li class="list-group-item"	th:text="| R$ ${equipamento.preco}|"></li>
+								<li class="list-group-item"	th:text="| Data da compra: ${#dates.format(equipamento.dataCompra, 'dd/MM/yyyy')}|"></li>
+								<li class="list-group-item" th:text="| Status: ${equipamento.status.descricao}|"></li>
+								<li class="list-group-item">Situação: <span class="glyphicon" th:classappend="${equipamento.ativo} == true?'glyphicon-ok-circle':'glyphicon-remove-circle'"></span></li>
+								<li class="list-group-item"	th:text="| Fabricante: ${equipamento.fabricante.nome}|"></li>
+								<li class="list-group-item"	th:if="${equipamento.estoque} != null" th:text="| Estoque: ${equipamento.estoque.descricao}|"></li>
+								<li class="list-group-item"	th:if="${equipamento.estrutura} != null" th:text="| Estrutura: ${equipamento.estrutura.nome}|"></li>								
+							</ul>
+							<div id="rowButton" class="row">								 
+								<a class="btn btn-default" th:href="@{/equipamentos}">Cancelar</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+</html>

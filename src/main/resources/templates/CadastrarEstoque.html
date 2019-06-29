@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	layout:decorator="LayoutPadrao">
+
+<head>
+<title>Cadastrar estoque</title>
+</head>
+
+<section layout:fragment="conteudo">
+	<!-- 	Código revisado, finalizado. -->
+
+	<form class="form-horizontal" data-toggle="validator" role="form"
+		method="POST" action="/estoque" th:object="${estoque}">
+
+		<div layout:include="MensagemGeral"></div>
+		<div layout:include="MensagemErro"></div>
+
+
+		<div class="panel panel-primary">
+
+			<div class="panel-heading">
+				<div class="clearfix">
+					<h1 class="panel-title sg-title-panel">Novo Estoque</h1>
+				</div>
+			</div>
+
+			<div class="panel-body">
+
+				<input type="hidden" th:field="*{codigo}" />
+
+				<div class="form-group"	th:classappend="${#fields.hasErrors('descricao')} ? 'has-error'">
+					<label for="descricao" class="col-sm-2 control-label">Descrição:</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="descricao" th:field="*{descricao}" placeholder="Insira uma descricao para o estoque" data-error="Por favor, insira uma descricao para o estoque!" th:required="required" />
+						<div class="help-block with-errors"></div>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('endereco')} ? 'has-error'">
+					<label for="endereco" class='col-sm-2 control-label'>Endereço</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="endereco" th:field="*{endereco}" placeholder="Insira o endereço" data-error="Digite o endereço para o estoque!"	th:required="required" />
+						<div class="help-block with-errors"></div>
+					</div>
+				</div>
+
+				<div class="form-group"	th:classappend="${#fields.hasErrors('telefone')} ? 'has-error'">
+					<label for="telefone" class='col-sm-2 control-label'>Telefone</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="telefone" th:field="*{telefone}" placeholder="Insira o telefone" data-error="Digite o telefone para o estoque!" th:required="required" />
+						<div class="help-block with-errors"></div>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('latitude')} ? 'has-error'">
+					<label for="latitude" class='col-sm-2 control-label'>Latitude</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="latitude" th:field="*{latitude}" placeholder="-22.8730369" data-error="Digite um valor para latitude!" th:required="required" />
+						<div class="help-block with-errors"></div>
+					</div>
+				</div>
+
+				<div class="form-group"	th:classappend="${#fields.hasErrors('longitude')} ? 'has-error'">
+					<label for="longitude" class='col-sm-2 control-label'>Longitude</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="longitude" th:field="*{longitude}" placeholder="-43.2857443" data-error="Digite um valor para longitude!" th:required="required" />
+						<div class="help-block with-errors"></div>
+					</div>
+				</div>
+
+				<div class="form-group" th:classappend="${#fields.hasErrors('elevacao')} ? 'has-error'">
+					<label for="elevacao" class='col-sm-2 control-label'>Elevação</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="elevacao" th:field="*{elevacao}" placeholder="50" data-error="Digite um valor para elevação!" th:required="required" />
+						<div class="help-block with-errors"></div>
+					</div>
+				</div>
+
+				<div class="form-group"	th:classappend="${#fields.hasErrors('ativo')} ? 'has-error'">
+					<label for="ativo" class='col-sm-2 control-label'>Ativo?:</label>
+					<div class="col-sm-4">
+						<select class="selectpicker" th:required="required"	th:field="*{ativo}">
+							<option th:value="${true}">Sim</option>
+							<option th:value="${false}">Não</option>
+						</select>
+					</div>
+				</div>
+
+
+				<input type="hidden" th:name="${_csrf.parameterName}"
+					th:value="${_csrf.token}" />
+
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-primary">Salvar</button>
+						<a class="btn btn-default" th:href="@{/estoques}">Cancelar</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</section>
+</html>

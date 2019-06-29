@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	layout:decorator="LayoutPadrao">
+
+<head>
+<title>Editar Equipamento</title>
+</head>
+
+<section layout:fragment="conteudo">
+
+	<div class="panel panel-primary">
+		
+		<div class="panel-heading">
+			<div class="clearfix">
+				<h1 class="panel-title sg-title-panel">Remover equipamento</h1>
+			</div>
+		</div>
+
+		<div class="panel-body">
+			<fieldset>
+				<legend>Selecione o estoque desejado:</legend>
+				<div class="col-md-2" th:each="estoque : ${todosEstoques}">
+					<a class="btn btn-md btn-primary" th:text="${estoque.descricao}" th:href="@{/{codigoEstrutura}/equipamentos/{codigoEquipamento}/estocar/{codigoEstoque}(codigoEstrutura=${estrutura.codigo}, codigoEquipamento=${equipamento.codigo}, codigoEstoque=${estoque.codigo})}"></a>
+				</div>
+			</fieldset>
+		</div>
+	</div>
+</section>
+
+</html>

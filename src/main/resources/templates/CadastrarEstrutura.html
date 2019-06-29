@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	layout:decorator="LayoutPadrao">
+
+<head>
+<title>Cadastrar estrutura</title>
+</head>
+
+<section layout:fragment="conteudo">
+
+<!-- 	CODIGO REVISADO - OK -->
+
+	<form class="form-horizontal" data-toggle="validator" role="form" method="POST" action="/estrutura" th:object="${estrutura}">
+
+		<div layout:include="MensagemGeral"></div>
+		<div layout:include="MensagemErro"></div>
+
+
+		<div class="panel panel-primary">
+
+			<div class="panel-heading">
+				<div class="clearfix">
+					<h1 class="panel-title sg-title-panel">Nova estrutura</h1>
+				</div>
+			</div>
+
+			<div class="panel-body">
+
+				<input type="hidden" th:field="*{codigo}" />
+
+				<div class="form-group"	th:classappend="${#fields.hasErrors('nome')} ? 'has-error'">
+					<label for="nome" class="col-sm-2 control-label">Nome</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="nome" th:field="*{nome}" placeholder="Insira um nome para a estrutura" data-error="Por favor, insira um nome para estrutura!" th:required="required" />
+						<div class="help-block with-errors"></div>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('tipo')} ? 'has-error'">
+					<label for="tipo" class='col-sm-2 control-label'>Tipo:</label>
+					<div class="col-sm-4">
+						<select class="form-control" name="tipo" th:field="*{tipo}"	th:required="required">
+							<option th:each="tipo : ${todosTiposEstruturas}" th:value="${tipo}" th:text="${tipo.descricao}"></option>
+						</select>
+						<div class="help-block with-errors"></div>
+					</div>
+				</div>
+
+				<div class="form-group"	th:classappend="${#fields.hasErrors('endereco')} ? 'has-error'">
+					<label for="endereco" class='col-sm-2 control-label'>Endereço</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="endereco" th:field="*{endereco}" placeholder="Insira o endereço" data-error="Digite o endereço para estrutura!"	th:required="required" />
+						<div class="help-block with-errors"></div>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('latitude')} ? 'has-error'">
+					<label for="latitude" class='col-sm-2 control-label'>Latitude</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="latitude" th:field="*{latitude}" placeholder="-22.8730369" data-error="Digite um valor para latitude!" th:required="required" />
+						<div class="help-block with-errors"></div>
+					</div>
+				</div>
+
+				<div class="form-group"	th:classappend="${#fields.hasErrors('longitude')} ? 'has-error'">
+					<label for="longitude" class='col-sm-2 control-label'>Longitude</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="longitude" th:field="*{longitude}" placeholder="-43.2857443" data-error="Digite um valor para longitude!" th:required="required" />
+						<div class="help-block with-errors"></div>
+					</div>
+				</div>
+
+				<div class="form-group"	th:classappend="${#fields.hasErrors('elevacao')} ? 'has-error'">
+					<label for="elevacao" class='col-sm-2 control-label'>Elevacao</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="elevacao" th:field="*{elevacao}" placeholder="50" data-error="Digite um valor para elevação!" th:required="required" />
+						<div class="help-block with-errors"></div>
+					</div>
+				</div>
+
+				<div class="form-group"	th:classappend="${#fields.hasErrors('proprietario')} ? 'has-error'">
+					<label for="proprietario" class='col-sm-2 control-label'>Proprietário</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="proprietario" th:field="*{proprietario}" placeholder="Nome do proprietário"	data-error="Digite o nome do proprietário!"	th:required="required" />
+						<div class="help-block with-errors"></div>
+					</div>
+				</div>
+
+				<div class="form-group"	th:classappend="${#fields.hasErrors('telefone')} ? 'has-error'">
+					<label for="telefone" class='col-sm-2 control-label'>Telefone</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control js-telefones" id="telefone" th:field="*{telefone}" placeholder="(00)0000-0000" data-error="Digite o número do telefone" th:required="required" />
+						<div class="help-block with-errors"></div>
+					</div>
+				</div>
+
+				<div class="form-group"	th:classappend="${#fields.hasErrors('aluguel')} ? 'has-error'">
+					<label for="aluguel" class='col-sm-2 control-label'>Aluguel</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control js-valores" id="aluguel"	th:field="*{aluguel}" placeholder="Valor do aluguel" data-error="Digite o valor do aluguel!" th:required="required" />
+						<div class="help-block with-errors"></div>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('ativo')} ? 'has-error'">
+					<label for="ativo" class='col-sm-2 control-label'>Ativo?:</label>
+					<div class="col-sm-4">
+						<select class="selectpicker" th:required="required"	th:field="*{ativo}" data-style="btn-info">
+							<option th:value="${true}">Sim</option>
+							<option th:value="${false}">Não</option>
+						</select>
+					</div>
+				</div>
+
+
+				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-primary">Salvar</button>
+						<a class="btn btn-default" th:href="@{/estruturas}">Cancelar</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</section>
+</html>

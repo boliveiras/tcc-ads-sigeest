@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	layout:decorator="LayoutPadrao">
+
+<head>
+<title>Pesquisar estruturas</title>
+</head>
+
+<section layout:fragment="conteudo">
+
+	<div layout:include="MensagemGeral"></div>
+
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<div class="clearfix">
+				<h1 class="panel-title sg-title-panel">
+					<b>Pesquisar estruturas</b>
+				</h1>
+			</div>
+		</div>
+
+		<div class="panel-body">
+
+			<div class="table-responsive">
+				<table id="dataTable"
+					class="table table-condensed table-hover table-bordered">
+					<thead>
+						<tr>
+							<th class="text-center col-md-1 active">#</th>
+							<th class="active">Nome</th>
+							<th class="text-center col-md-3 active">Endereço</th>
+							<th class="text-center col-md-2 active">Proprietário</th>
+							<th class="text-right col-md-2 active">Telefone</th>
+							<th class="col-md-2 active"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="estrutura : ${estruturas}">
+							<td class="text-center" th:text="${estrutura.codigo}" th:classappend="${estrutura.ativo} == true?'info':'danger'"></td>
+							<td th:text="${estrutura.nome}" th:classappend="${estrutura.ativo} == true?'info':'danger'"></td>
+							<td class="text-center" th:text="${estrutura.endereco}" th:classappend="${estrutura.ativo} == true?'info':'danger'"></td>
+							<td class="text-center" th:text="${estrutura.proprietario}" th:classappend="${estrutura.ativo} == true?'info':'danger'"></td>
+							<td class="text-center" th:text="${estrutura.telefone}" th:classappend="${estrutura.ativo} == true?'info':'danger'"></td>
+
+							<td class="text-center" th:classappend="${estrutura.ativo} == true?'info':'danger'">
+								<a class="btn btn-link btn-xs" th:href="@{/estrutura/{codigo}/exibir(codigo=${estrutura.codigo})}" title="Exibir" rel="tooltip" data-placement="top"> 
+									<span class="glyphicon glyphicon-open"></span>
+								</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</section>
+
+</html>
